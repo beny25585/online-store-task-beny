@@ -79,9 +79,8 @@ const cart = [1, 3, 5];
 // ------------------------------------
 
 function getAvailableProducts(store: Store): Product[] {
-  return store.products.filter((product) => product.inStock === true);
+  return store.products.filter((product) => product.inStock);
 }
-console.log("getAvailableProducts:", getAvailableProducts(store));
 
 function getProductsInPriceRange(
   store: Store,
@@ -92,27 +91,18 @@ function getProductsInPriceRange(
     (p) => p.price >= minPrice && p.price <= maxPrice
   );
 }
-console.log("getProductsInPriceRange", getProductsInPriceRange(store, 10, 100));
 
 function getProductsByTag(store: Store, tag: string): Product[] {
   return store.products.filter((t) => t.tags.includes(tag));
 }
-console.log("getProductsByTag", getProductsByTag(store, "electronics"));
 
 function getAvailableProductsByTag(store: Store, tag: string): Product[] {
-  return store.products.filter(
-    (t) => t.tags.includes(tag) && t.inStock == true
-  );
+  return store.products.filter((t) => t.tags.includes(tag) && t.inStock);
 }
-console.log(
-  "getAvailableProductsByTag",
-  getAvailableProductsByTag(store, "audio")
-);
 
 function getCartProducts(store: Store, cart: number[]): Product[] {
   return store.products.filter((p) => cart.includes(p.id));
 }
-console.log("getCartProducts", getCartProducts(store, cart));
 
 function getCartTotalInStock(store: Store, cart: number[]): Number {
   let total = 0;
@@ -123,4 +113,3 @@ function getCartTotalInStock(store: Store, cart: number[]): Number {
   });
   return total;
 }
-console.log("getCartTotalInStockcls", getCartTotalInStock(store, cart));
